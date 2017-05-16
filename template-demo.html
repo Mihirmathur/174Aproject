@@ -28,8 +28,8 @@ index.html - The web page document containing the canvas (drawing surface), that
 
             // IMPORTANT: -- You have to include all your new image files in the following array:
             var texture_files_to_load = ["text.png", "stars.png", "earth.gif", 
-            "ironman_face.png", "ironman_top.png", "ironman_right.png", "ironman_left.png", "ironman_back.png",
-            "ground.png", "hellrock.png"
+            "ironman_face.png", "ironman_top.png", "ironman_right.png", "ironman_left.png", "ironman_back.png", "ironman_suit.png", "ironman_leg.png", "ironman_arm.png",
+            "ground.png", "hellrock.png", "earth.gif", "sky.png", "blast.png"
             ]; // Put all our texture images in the GPU.
             for (let f of texture_files_to_load) contexts["main_canvas"].textures_in_use[f] = (new Texture(contexts["main_canvas"].gl, f, true));
             // We instantiate some of our custom "Scene_Component" subclasses and register
@@ -76,7 +76,7 @@ index.html - The web page document containing the canvas (drawing surface), that
 <div class="navbar">
     More demos:
     <span style="padding-left:20px;"></span><a href="?Bee_Scene">       Bee Scene</a>
-    <span style="padding-left:20px;"></span><a href="?Example_Animation">       Example_Animation</a>
+    <span style="padding-left:20px;"></span><a href="?Example_Camera">       Example_Animation</a>
     <span style="padding-left:20px;"></span><a href="?Surfaces_Tester">         Surfaces_Tester</a>
     <span style="padding-left:20px;"></span><a href="?Project2">               Project2</a>
     <span style="padding-left:20px;"></span><a href="?Star">                    Star</a>
