@@ -1,6 +1,6 @@
 // UCLA's Graphics Example Code (Javascript and C++ translations available), by Garett for CS174a.
 // tinywebgl_ucla.js - A file to show how to organize a complete graphics program.  It wraps common WebGL commands.
-
+this.sent_to_GPU = true;
 function Declare_Any_Class( name, methods, superclass = Object, scope = window )              // (Making javascript behave more like Object Oriented C++)
   { scope[name] = function( args ) { if( this.construct ) this.construct.apply( this, arguments );  } // When new gets called on the class name, call its construct():
     var p = Object.create(superclass.prototype);                                                      // Use prototypes to make the object.  Begin with the superclass's.

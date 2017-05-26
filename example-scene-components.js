@@ -1,6 +1,7 @@
 // UCLA's Graphics Example Code (Javascript and C++ translations available), by Garett for CS174a.
 // example-scene-components.js - The Scene_Component subclasses defined here describe different independent animation processes that you 
-// want to fire off each frame, by defining a display event and how to react to key and mouse input events.  Create your own subclasses, 
+// want to fire off each 
+// by defining a display event and how to react to key and mouse input events.  Create your own subclasses, 
 // and fill them in with all your shape drawing calls and any extra key / mouse controls.
 
 // **********************************************************************************
@@ -8,9 +9,9 @@
 // shapes you see drawn are coded, and a good place to begin filling in your own code.
 
 Declare_Any_Class("Example_Animation", // An example of a Scene_Component that our class Canvas_Manager can manage.  This one draws the scene's 3D shapes.
-    {
-        'construct' (context) {
-            var shapes = {
+{
+    'construct' (context) {
+        var shapes = {
                 'triangle': new Triangle(), // At the beginning of our program, instantiate all shapes we plan to use,
                 'strip': new Square(), // each with only one instance in the graphics card's memory.
                 'bad_tetrahedron': new Tetrahedron(false), // For example we would only create one "cube" blueprint in the GPU, but then 
@@ -32,7 +33,7 @@ Declare_Any_Class("Example_Animation", // An example of a Scene_Component that o
 
             // *** Lights: *** Values of vector or point lights over time.  Two different lights *per shape* supported; more requires changing a number in the vertex shader.
             graphics_state.lights = [new Light(vec4(30, 30, 34, 1), Color(0, .4, 0, 1), 100000), // Arguments to construct a Light(): Light source position or 
-                new Light(vec4(-10, -20, -14, 0), Color(1, 1, .3, 1), 100)
+            new Light(vec4(-10, -20, -14, 0), Color(1, 1, .3, 1), 100)
             ]; // vector (homogeneous coordinates), color, and size.  
             /**********************************
             Start coding down here!!!!
@@ -45,12 +46,12 @@ Declare_Any_Class("Example_Animation", // An example of a Scene_Component that o
             this.shapes.strip.draw(graphics_state, model_transform, this.greyPlastic);
 
             var t = graphics_state.animation_time / 1000,
-                tilt_spin = rotation(700 * t, [.1, .8, .1]),
-                funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
+            tilt_spin = rotation(700 * t, [.1, .8, .1]),
+            funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
 
             // Many shapes can share influence from the same pair of lights, but they don't have to.  All the following shapes will use these lights instead of the above ones.
             graphics_state.lights = [new Light(mult_vec(tilt_spin, vec4(30, 30, 34, 1)), Color(0, .4, 0, 1), 100000),
-                new Light(mult_vec(tilt_spin, vec4(-10, -20, -14, 0)), Color(1, 1, .3, 1), 100 * Math.cos(t / 10))
+            new Light(mult_vec(tilt_spin, vec4(-10, -20, -14, 0)), Color(1, 1, .3, 1), 100 * Math.cos(t / 10))
             ];
 
             model_transform = mult(model_transform, translation(0, -2, 0));
@@ -72,30 +73,30 @@ Declare_Any_Class("Example_Animation", // An example of a Scene_Component that o
 //  Assignment 1 would fit nicely into the following class definition:
 
 Declare_Any_Class("Bee_Scene", // An example of drawing a hierarchical object using a "model_transform" matrix and post-multiplication.
-    {
-        'construct' (context, canvas = context.canvas) {
-            var shapes = {
-                "box": new Cube(),
-                "square": new Square(),
-                "head": new Grid_Sphere(200, 200),
-                "round_cyl": new Capped_Cylinder(20, 100)
-            };
-            this.submit_shapes(context, shapes);
-            var model_transform;
-            this.define_data_members({
-                red: context.shaders_in_use["Phong_Model"].material(Color(1, 0, 0, 1), 1, 0, 0, 100),
-                blue: context.shaders_in_use["Phong_Model"].material(Color(0, 0, 1, 1), 1, 0, 0, 100),
-                green: context.shaders_in_use["Phong_Model"].material(Color(0, 1, 0, 1), 1, 0, 0, 100),
-                brown: context.shaders_in_use["Phong_Model"].material(Color(.7, .3, 0, 1), 1, 0, 0, 100),
-                mustard: context.shaders_in_use["Phong_Model"].material(Color(.9, .7, 0, 1), 1, 0, 0, 100),
-                blackish: context.shaders_in_use["Phong_Model"].material(Color(.2, .1, .1, 1), 1, 0, 0, 100),
-                yellow: context.shaders_in_use["Phong_Model"].material(Color(1, 1, .2, 1), 1, 0, 0, 100),
-                purplePlastic: context.shaders_in_use["Phong_Model"].material(Color(.9, .2, .7, 1), .4, .4, .8, 40)
-            });
-            context.globals.graphics_state.set(translation(0, -2, -50), perspective(45, context.width / context.height, .1, 1000), 0);
+{
+    'construct' (context, canvas = context.canvas) {
+        var shapes = {
+            "box": new Cube(),
+            "square": new Square(),
+            "head": new Grid_Sphere(200, 200),
+            "round_cyl": new Capped_Cylinder(20, 100)
+        };
+        this.submit_shapes(context, shapes);
+        var model_transform;
+        this.define_data_members({
+            red: context.shaders_in_use["Phong_Model"].material(Color(1, 0, 0, 1), 1, 0, 0, 100),
+            blue: context.shaders_in_use["Phong_Model"].material(Color(0, 0, 1, 1), 1, 0, 0, 100),
+            green: context.shaders_in_use["Phong_Model"].material(Color(0, 1, 0, 1), 1, 0, 0, 100),
+            brown: context.shaders_in_use["Phong_Model"].material(Color(.7, .3, 0, 1), 1, 0, 0, 100),
+            mustard: context.shaders_in_use["Phong_Model"].material(Color(.9, .7, 0, 1), 1, 0, 0, 100),
+            blackish: context.shaders_in_use["Phong_Model"].material(Color(.2, .1, .1, 1), 1, 0, 0, 100),
+            yellow: context.shaders_in_use["Phong_Model"].material(Color(1, 1, .2, 1), 1, 0, 0, 100),
+            purplePlastic: context.shaders_in_use["Phong_Model"].material(Color(.9, .2, .7, 1), .4, .4, .8, 40)
+        });
+        context.globals.graphics_state.set(translation(0, -2, -50), perspective(45, context.width / context.height, .1, 1000), 0);
 
-        },
-        'display' (graphics_state) {
+    },
+    'display' (graphics_state) {
             // Assignment 1 can start here!
 
             var model_stack = new Array();
@@ -103,8 +104,8 @@ Declare_Any_Class("Bee_Scene", // An example of drawing a hierarchical object us
             model_transform = identity();
 
             var t = graphics_state.animation_time / 1800,
-                tilt_spin = rotation(700 * t, [.1, .8, .1]),
-                funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
+            tilt_spin = rotation(700 * t, [.1, .8, .1]),
+            funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
 
             model_transform = mult(model_transform, translation(0, -16, 0));
             model_transform = mult(model_transform, rotation(90, [1, 0, 0]));
@@ -231,29 +232,30 @@ Declare_Any_Class("Bee_Scene", // An example of drawing a hierarchical object us
 // The rest of this file is more code that powers the included demos.
 
 Declare_Any_Class("Debug_Screen", // Debug_Screen - An example of a Scene_Component that our Canvas_Manager can manage.  Displays a text user interface.
-    {
-        'construct' (context) {
-            this.define_data_members({
-                string_map: context.globals.string_map,
-                start_index: 0,
-                tick: 0,
-                visible: false,
-                graphics_state: new Graphics_State(),
-                text_material: context.shaders_in_use["Phong_Model"].material(
-                    Color(0, 0, 0, 1), 1, 0, 0, 40, context.textures_in_use["text.png"])
-            });
-            var shapes = {
-                'debug_text': new Text_Line(35),
-                'cube': new Cube()
-            };
-            this.submit_shapes(context, shapes);
-        },
-        'init_keys' (controls) {
-            controls.add("t", this, function() { this.visible ^= 1; });
-            controls.add("up", this, function() { this.start_index = (this.start_index + 1) % Object.keys(this.string_map).length; });
-            controls.add("down", this, function() { this.start_index = (this.start_index - 1 + Object.keys(this.string_map).length) % Object.keys(this.string_map).length; });
-            this.controls = controls;
-        },
+{
+    'construct' (context) {
+        this.define_data_members({
+            string_map: context.globals.string_map,
+            start_index: 0,
+            tick: 0,
+            visible: false,
+            graphics_state: new Graphics_State(),
+            text_material: context.shaders_in_use["Phong_Model"].material(
+                Color(0, 0, 0, 1), 1, 0, 0, 40, context.textures_in_use["text.png"])
+        });
+        var shapes = {
+            'debug_text': new Text_Line(35),
+            'textLine': new Text_Line(55),
+            'cube': new Cube()
+        };
+        this.submit_shapes(context, shapes);
+    },
+    'init_keys' (controls) {
+        controls.add("t", this, function() { this.visible ^= 1; });
+        controls.add("up", this, function() { this.start_index = (this.start_index + 1) % Object.keys(this.string_map).length; });
+        controls.add("down", this, function() { this.start_index = (this.start_index - 1 + Object.keys(this.string_map).length) % Object.keys(this.string_map).length; });
+        this.controls = controls;
+    },
         'update_strings' (debug_screen_object) // Strings that this Scene_Component contributes to the UI:
         {
             debug_screen_object.string_map["tick"] = "Frame: " + this.tick++;
@@ -261,10 +263,51 @@ Declare_Any_Class("Debug_Screen", // Debug_Screen - An example of a Scene_Compon
         },
         'display' (global_graphics_state) // Leave these 3D global matrices unused, because this class is instead making a 2D user interface.
         {
+
+            if(global_time < 3000){
+                model_text = identity();
+                model_text = mult(translation(-16, 0, 0), model_text)
+                model_text = mult(scale(.03, .06, 1), model_text); 
+                this.shapes.textLine.set_string("A tesseract appears");
+                this.shapes.textLine.draw(this.graphics_state, model_text, this.text_material);
+
+
+                model_text = identity();
+                model_text = mult(translation(-10, -2, 0), model_text);
+                model_text = mult(scale(.03, .06, 1), model_text); 
+                this.shapes.textLine.set_string("in Legoland...");
+
+                this.shapes.textLine.draw(this.graphics_state, model_text, this.text_material);
+            }
+
+
+            if(global_time > 30000 && global_time < 40000){
+                model_text = identity();
+                model_text = mult(translation(-10, -4, 0), model_text)
+                model_text = mult(scale(.03, .06, 1), model_text); 
+                this.shapes.textLine.set_string("Lego Iron Man");
+                this.shapes.textLine.draw(this.graphics_state, model_text, this.text_material);
+
+            }
+            
+            if(global_time > 33000 && global_time < 40000){
+                model_text = identity();
+                model_text = mult(translation(-10, -6, 0), model_text)
+                model_text = mult(scale(.03, .06, 1), model_text); 
+                this.shapes.textLine.set_string("Releasing June 2017");
+                this.shapes.textLine.draw(this.graphics_state, model_text, this.text_material);
+            }
+            
+
             if (!this.visible) return;
+
+            
+
             var font_scale = scale(.02, .04, 1),
-                model_transform = mult(translation(-.95, -.9, 0), font_scale),
-                strings = Object.keys(this.string_map);
+            model_transform = mult(translation(-.95, -.9, 0), font_scale),
+            strings = Object.keys(this.string_map);
+            
+
 
             for (var i = 0, idx = this.start_index; i < 4 && i < strings.length; i++, idx = (idx + 1) % strings.length) {
                 this.shapes.debug_text.set_string(this.string_map[strings[idx]]);
@@ -284,7 +327,7 @@ Declare_Any_Class("Debug_Screen", // Debug_Screen - An example of a Scene_Compon
     }, Scene_Component);
 
 Declare_Any_Class("Example_Camera", // An example of a Scene_Component that our Canvas_Manager can manage.  Adds both first-person and
-    {
+{
         'construct' (context, canvas = context.canvas) // third-person style camera matrix controls to the canvas.
         { // 1st parameter below is our starting camera matrix.  2nd is the projection:  The matrix that determines how depth is treated.  It projects 3D points onto a plane.
             context.globals.graphics_state.set(translation(0, 0, -25), perspective(45, context.width / context.height, .1, 1000), 0);
@@ -340,8 +383,9 @@ Declare_Any_Class("Example_Camera", // An example of a Scene_Component that our 
         'update_strings' (user_interface_string_manager) // Strings that this Scene_Component contributes to the UI:
         {
             var C_inv = inverse(this.graphics_state.camera_transform),
-                pos = mult_vec(C_inv, vec4(0, 0, 0, 1)),
-                z_axis = mult_vec(C_inv, vec4(0, 0, 1, 0));
+            pos = mult_vec(C_inv, vec4(0, 0, 0, 1)),
+            z_axis = mult_vec(C_inv, vec4(0, 0, 1, 0));
+
             user_interface_string_manager.string_map["origin"] = "Center of rotation: " + this.origin[0].toFixed(0) + ", " + this.origin[1].toFixed(0) + ", " + this.origin[2].toFixed(0);
             user_interface_string_manager.string_map["cam_pos"] = "Cam Position: " + pos[0].toFixed(2) + ", " + pos[1].toFixed(2) + ", " + pos[2].toFixed(2);
             user_interface_string_manager.string_map["facing"] = "Facing: " + ((z_axis[0] > 0 ? "West " : "East ") // (Actually affected by the left hand rule)
@@ -349,8 +393,8 @@ Declare_Any_Class("Example_Camera", // An example of a Scene_Component that our 
         },
         'display' (graphics_state) {
             var leeway = 70,
-                degrees_per_frame = .0004 * graphics_state.animation_delta_time,
-                meters_per_frame = .01 * graphics_state.animation_delta_time;
+            degrees_per_frame = .0004 * graphics_state.animation_delta_time,
+            meters_per_frame = .01 * graphics_state.animation_delta_time;
             if (this.mouse.anchor) // Third-person "arcball" camera mode: Is a mouse drag occurring?
             {
                 var dragging_vector = subtract(this.mouse.from_center, this.mouse.anchor); // Spin the scene around the world origin on a user-determined axis.
@@ -371,13 +415,13 @@ Declare_Any_Class("Example_Camera", // An example of a Scene_Component that our 
                     var velocity = ((offsets.minus[i] > 0 && offsets.minus[i]) || (offsets.plus[i] < 0 && offsets.plus[i])) * degrees_per_frame; // &&'s might zero these out.
                     graphics_state.camera_transform = mult(rotation(velocity, i, 1 - i, 0), graphics_state.camera_transform); // On X step, rotate around Y axis, and vice versa.
                 } // Now apply translation movement of the camera, in the newest local coordinate frame
-            graphics_state.camera_transform = mult(translation(scale_vec(meters_per_frame, this.thrust)), graphics_state.camera_transform);
-        }
-    }, Scene_Component);
+                graphics_state.camera_transform = mult(translation(scale_vec(meters_per_frame, this.thrust)), graphics_state.camera_transform);
+            }
+        }, Scene_Component);
 
 Declare_Any_Class("Flag_Toggler", // A class that just interacts with the keyboard and reports strings
-    {
-        'construct' (context) { this.globals = context.globals; },
+{
+    'construct' (context) { this.globals = context.globals; },
         'init_keys' (controls) //  Desired keyboard shortcuts
         {
             controls.add("ALT+g", this, function() { this.globals.graphics_state.gouraud ^= 1; }); // Make the keyboard toggle some
@@ -411,19 +455,19 @@ Declare_Any_Class("Surfaces_Tester", {
             'gem2': Torus.prototype.auto_flat_shaded_version(20, 20),
             'swept_curve': new Surface_Of_Revolution(10, 10, [vec3(2, 0, -1), vec3(1, 0, 0), vec3(1, 0, 1), vec3(0, 0, 2)], 120, [
                 [0, 7][0, 7]
-            ])
+                ])
         };
         this.submit_shapes(context, shapes);
         this.define_data_members({ shader: context.shaders_in_use["Phong_Model"], textures: Object.values(context.textures_in_use) });
     },
     'draw_all_shapes' (model_transform, graphics_state) {
         var i = 0,
-            t = graphics_state.animation_time / 1000;
+        t = graphics_state.animation_time / 1000;
 
         for (key in this.shapes) {
             i++;
             var funny_function_of_time = 50 * t + i * i * Math.cos(t / 2),
-                random_material = this.shader.material(Color((i % 7) / 7, (i % 6) / 6, (i % 5) / 5, 1), .2, 1, 1, 40, this.textures[i % this.textures.length])
+            random_material = this.shader.material(Color((i % 7) / 7, (i % 6) / 6, (i % 5) / 5, 1), .2, 1, 1, 40, this.textures[i % this.textures.length])
 
             model_transform = mult(model_transform, rotation(funny_function_of_time, i % 3 == 0, i % 3 == 1, i % 3 == 2)); // Irregular motion
             model_transform = mult(model_transform, translation(0, -3, 0));
@@ -436,7 +480,7 @@ Declare_Any_Class("Surfaces_Tester", {
         for (var i = 0; i < 7; i++) // Another example of not every shape owning the same pair of lights:
         {
             graphics_state.lights = [new Light(vec4(i % 7 - 3, i % 6 - 3, i % 5 - 3, 1), Color(1, 0, 0, 1), 100000000),
-                new Light(vec4(i % 6 - 3, i % 5 - 3, i % 7 - 3, 1), Color(0, 1, 0, 1), 100000000)
+            new Light(vec4(i % 6 - 3, i % 5 - 3, i % 7 - 3, 1), Color(0, 1, 0, 1), 100000000)
             ];
 
             model_transform = this.draw_all_shapes(model_transform, graphics_state); // *** How to call a function and still have a single matrix state ***
@@ -446,7 +490,7 @@ Declare_Any_Class("Surfaces_Tester", {
 }, Scene_Component);
 
 Declare_Any_Class("Star", // An example of animating without making any extremely customized primitives.
-    {
+{
         'construct' (context) // Each frame manages to show one million points connected by half as many flat-colored triangles.
         {
             context.globals.animate = true;
@@ -458,9 +502,9 @@ Declare_Any_Class("Star", // An example of animating without making any extremel
         },
         'display' (graphics_state) {
             var t = graphics_state.animation_time / 500,
-                funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
+            funny_orbit = rotation(90 * t, [Math.cos(t), Math.sin(t), .7 * Math.cos(t)]);
             graphics_state.lights = [new Light(mult_vec(funny_orbit, vec4(30, 30, 34, 1)), Color(0, .4, 0, 1), 100000),
-                new Light(mult_vec(funny_orbit, vec4(-10, -20, -14, 0)), Color(1, 1, .3, 1), 100 * Math.cos(t / 10))
+            new Light(mult_vec(funny_orbit, vec4(-10, -20, -14, 0)), Color(1, 1, .3, 1), 100 * Math.cos(t / 10))
             ];
             for (var j = 0; j < 20; j++)
                 for (var i = 0; i < 20; i++) {
@@ -471,33 +515,33 @@ Declare_Any_Class("Star", // An example of animating without making any extremel
 
                     this.shapes.torus.draw(graphics_state, model_transform, this.shader.material(Color(i / 10, j / 20, 0, 1), .2, .8, .5, 20));
                 }
-        }
-    }, Scene_Component);
+            }
+        }, Scene_Component);
 
 Declare_Any_Class("Bump_Map_And_Mesh_Loader", // An example where one teapot has a bump-mapping-like hack, and the other does not.
-    {
-        'construct' (context) {
-            context.globals.animate = true;
-            context.globals.graphics_state.camera_transform = translation(0, 0, -5);
+{
+    'construct' (context) {
+        context.globals.animate = true;
+        context.globals.graphics_state.camera_transform = translation(0, 0, -5);
 
-            var shapes = { "teapot": new Shape_From_File("teapot.obj") };
-            this.submit_shapes(context, shapes);
-            this.define_data_members({
-                stars: context.shaders_in_use["Phong_Model"].material(Color(.5, .5, .5, 1), .5, .5, .5, 40, context.textures_in_use["stars.png"]),
-                bumps: context.shaders_in_use["Fake_Bump_Map"].material(Color(.5, .5, .5, 1), .5, .5, .5, 40, context.textures_in_use["stars.png"])
-            });
-        },
-        'display' (graphics_state) {
-            var t = graphics_state.animation_time;
-            graphics_state.lights = [new Light(mult_vec(rotation(t / 5, 1, 0, 0), vec4(3, 2, 10, 1)), Color(1, .7, .7, 1), 100000)];
+        var shapes = { "teapot": new Shape_From_File("teapot.obj") };
+        this.submit_shapes(context, shapes);
+        this.define_data_members({
+            stars: context.shaders_in_use["Phong_Model"].material(Color(.5, .5, .5, 1), .5, .5, .5, 40, context.textures_in_use["stars.png"]),
+            bumps: context.shaders_in_use["Fake_Bump_Map"].material(Color(.5, .5, .5, 1), .5, .5, .5, 40, context.textures_in_use["stars.png"])
+        });
+    },
+    'display' (graphics_state) {
+        var t = graphics_state.animation_time;
+        graphics_state.lights = [new Light(mult_vec(rotation(t / 5, 1, 0, 0), vec4(3, 2, 10, 1)), Color(1, .7, .7, 1), 100000)];
 
-            for (let i of[-1, 1]) {
-                var model_transform = mult(rotation(t / 40, 0, 2, 1), translation(2 * i, 0, 0));
-                model_transform = mult(model_transform, rotation(t / 25, -1, 2, 0));
-                this.shapes.teapot.draw(graphics_state, mult(model_transform, rotation(-90, 1, 0, 0)), i == 1 ? this.stars : this.bumps);
-            }
+        for (let i of[-1, 1]) {
+            var model_transform = mult(rotation(t / 40, 0, 2, 1), translation(2 * i, 0, 0));
+            model_transform = mult(model_transform, rotation(t / 25, -1, 2, 0));
+            this.shapes.teapot.draw(graphics_state, mult(model_transform, rotation(-90, 1, 0, 0)), i == 1 ? this.stars : this.bumps);
         }
-    }, Scene_Component);
+    }
+}, Scene_Component);
 
 
 // DISCLAIMER:  The collision method shown below is not used by anyone; it's just very quick to code.  Making every collision body a stretched sphere is kind 
@@ -573,8 +617,8 @@ Declare_Any_Class("Simulation_Scene_Superclass", {
 }, Scene_Component);
 
 Declare_Any_Class("Ground_Collision_Scene", // Scenario 1: Let random initial momentums carry bodies until they fall and bounce.
-    {
-        'simulate' () {
+{
+    'simulate' () {
             while (this.bodies.length < 100) this.bodies.push(new Body(this.random_shape(), this.random_material())); // Generate moving bodies  
             for (let b of this.bodies) {
                 b.linear_velocity[1] += .0001 * -9.8; // Gravity.
@@ -584,8 +628,8 @@ Declare_Any_Class("Ground_Collision_Scene", // Scenario 1: Let random initial mo
     }, Simulation_Scene_Superclass);
 
 Declare_Any_Class("Object_Collision_Scene", // Scenario 2: Detect when some flying objects collide with one another, coloring them red.    
-    {
-        'simulate' () {
+{
+    'simulate' () {
             if (this.bodies.length > 20) this.bodies = this.bodies.splice(0, 20); // Max of 20 bodies
             while (this.bodies.length < 20) this.bodies.push(new Body(this.random_shape(), this.random_material())); // Generate moving bodies  
 
@@ -605,6 +649,6 @@ Declare_Any_Class("Object_Collision_Scene", // Scenario 2: Detect when some flyi
                         b.linear_velocity = vec3(); // Zero out the velocity so they don't inter-penetrate more
                         b.angular_velocity = 0;
                     }
+                }
             }
-        }
-    }, Simulation_Scene_Superclass);
+        }, Simulation_Scene_Superclass);

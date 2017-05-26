@@ -106,6 +106,37 @@ Declare_Any_Class("Pyramid", {
 
 }, Shape);
 
+Declare_Any_Class("Pyramid2", {
+    'populate' (using_flat_shading) {
+        var a = 1 / Math.sqrt(2);
+        this.positions.push(vec3(-1, 0, 1), vec3(1, 0, 1), vec3(1, 0, -1));
+        this.positions.push(vec3(-1, 0, 1), vec3(-1, 0, -1), vec3(1, 0, -1));
+        this.positions.push(vec3(-1, 0, 1), vec3(1, 0, 1), vec3(0, 1, 0));
+        this.positions.push(vec3(1, 0, 1), vec3(1, 0, -1), vec3(0, 1, 0));
+        this.positions.push(vec3(1, 0, -1), vec3(-1, 0, -1), vec3(0, 1, 0));
+        this.positions.push(vec3(-1, 0, -1), vec3(-1, 0, 1), vec3(0, 1, 0));
+
+        this.normals.push( vec3(0,-1,0), vec3(0,-1,0), vec3(0,-1,0) );
+        this.normals.push( vec3(0,-1,0), vec3(0,-1,0), vec3(0,-1,0) );
+        
+        this.normals.push( vec3(0,a,a), vec3(0,a,a), vec3(0,a,a) );
+        this.normals.push( vec3(a,a,0), vec3(a,a,0), vec3(a,a,0) );
+        this.normals.push( vec3(0,a,-a), vec3(0,a,-a), vec3(0,a,-a) );
+        this.normals.push( vec3(-a,a,0), vec3(-a,a,0), vec3(-a,a,0) );
+
+        this.texture_coords.push( vec2(0,0), vec2(.33,0), vec2(0,.66) );
+        this.texture_coords.push( vec2(0,0), vec2(.66,0), vec2(0,.66) );
+        this.texture_coords.push( vec2(0,0), vec2(.66,0), vec2(0,.66) );
+        this.texture_coords.push( vec2(0,0), vec2(.5,0), vec2(0,1) );
+        this.texture_coords.push( vec2(0,0), vec2(1,0), vec2(0,.5) );
+        this.texture_coords.push( vec2(0,0), vec2(.5,0), vec2(0,0.5) );
+
+        this.indices.push(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
+
+    }
+
+}, Shape);
+
 
 // *********** WINDMILL ***********
 Declare_Any_Class("Windmill", // As our shapes get more complicated, we begin using matrices and flow control (including loops) to
